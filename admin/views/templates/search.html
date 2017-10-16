@@ -1,0 +1,53 @@
+<h3>Filters</h3>
+<form method="POST" action="search.php" class="form-inline">
+    <div class="form-group">
+        <label for="name">Name: </label>
+        <select class="form-control" name="name" id="name">
+            <option selected disabled>Select</option>
+            <?php
+            if($search->file === 'messages') {
+                $search->getNameList('1', '2');
+            }
+            else {
+                $search->getNameList('3', '4');
+            }
+            ?>
+        </select>
+    </div>&nbsp;
+    <div class="form-group">
+        <label for="email">E-mail: </label>
+        <select class="form-control" name="email" id="email">
+            <option selected disabled>Select</option>
+            <?php
+            if($search->file === 'messages') {
+               $search->getEmailList('1', '2');
+            }
+            else {
+                $search->getEmailList('3', '4');
+            }
+            ?>           
+        </select>
+    </div>&nbsp;
+    <div class="form-group">
+        <label for="status">Status: </label>
+        <select class="form-control" name="status" id="status">
+            <option selected disabled>Select</option>
+            <?php
+            if($search->file === 'messages') { 
+                echo '<option>Responded</option>';
+                echo '<option>Not Responded</option>';
+            }
+            else {
+                echo '<option>Responded - Arch</option>';
+                echo '<option>Not Responded - Arch</option>';
+            }
+            ?>
+        </select>
+    </div>&nbsp;
+    <div class="form-group">
+        <label for="date">Date: </label>
+        <input type="text" name="date" id="date" class="form-control" data-datepick="showOtherMonths: true, firstDay: 1, dateFormat: 'yyyy-mm-dd', minDate: 'new Date(2012, 12 - 1, 25)'" value="" />
+    </div>&nbsp;
+    <input type="submit" name="search" id="search" class="btn btn-info" role="button" value="Search" />&nbsp;
+    <input type="reset" name="reset" id="reset" class="btn btn-danger" role="button" value="Reset" />
+</form><br />

@@ -1,0 +1,78 @@
+<!-- Frontend form-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Imre Sallér" />
+    <title>Form</title>
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h3>Simple Form</h3>
+            <p><strong>The fields marked with * are obligatory!</strong></p>
+            <div id="form" class="col-md-12">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="name">Name: *</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?php echo $msg->name; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail: *</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" value="<?php echo $msg->email; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telephone:</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Telephone" value="<?php echo $msg->phone; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message: *</label>
+                        <textarea class="form-control" id="message" name="message" placeholder="Your message" required><?php echo $msg->message; ?></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" id="privacy" name="privacy" required >I accept the <a href="#" data-toggle="modal" data-target="#myModal">privacy policy. *</a></label>
+                    </div>
+                    <!--captcha-->
+                    <div class="form-group">
+                        <label for="code">Security question: What day is it today? *</label>
+                        <input type="text" id="code" name="code" placeholder="e.g. Monday" value="<?php echo ucfirst($msg->code); ?>" required>
+                    </div>
+                    <!--honeypot-->
+                    <div class="form-group">
+                        <input type="text" id="reg" name="reg" class="reg" />
+                    </div>
+                    <input type="submit" id="send" name="send" class="btn btn-default" value="Send" disabled>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Privacy Policy</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.12.3.min.js" type="text/javascript"></script>
+    <script src="css/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/ajax.js" type="text/javascript"></script>
+
+</body>
+
+</html>

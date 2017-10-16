@@ -1,0 +1,60 @@
+<?php require_once('../views/templates/logout.html');
+echo '<h1>Search Results</h1>';
+require_once('../views/templates/search.html');
+echo '<form method="post" action="">';
+echo '<input type="submit" id="delall" name="delall" class="btn btn-danger" role="button" value="Delete All" onclick="return confirm(\'Are you sure?\')" />&nbsp';
+if($search->file === 'messages') {
+    echo '<input type="submit" id="archall" name="archall" class="btn btn-info" role="button" value="Archivate all" onclick="return confirm(\'Are you sure?\')" />&nbsp';
+}
+else {
+    echo '<input type="submit" id="actall" name="actall" class="btn btn-info" role="button" value="Activate all" onclick="return confirm(\'Are you sure?\')" />&nbsp';
+}
+if($search->file === 'messages') {
+    echo '<a href="messages.php" class="btn btn-warning" role="button">Back to the messages</a><br /><br />';
+}
+else {
+    echo '<a href="archive.php" class="btn btn-warning" role="button">Back to the archive messages</a><br /><br />';
+}
+echo '</form>';    
+try {
+    if(isset($_POST['search'])) {      
+        if($search->result->rowCount()) {        
+            $search->id;              
+            echo '<table class="table"><th>Nr.</th><th>Name</th><th>E-mail</th><th>Telephone</th><th>Received</th><th>Status</th><th>Action</th>';
+                while($row = $search->result->fetch()) {
+                    echo '<tr>';
+                    echo '<td data-key="' . $row->getMsgId() . '">' . $i++ . '</td>';    
+                    echo "<td>{$row->getName()}</td>
+                    <td><a href=\"mailto:{$row->getEmail()}\">{$row->getEmail()}</a></td>
+                    <td>{$row->getPhone()}</td>
+                    <td>{$row->getReceived()}</td>";
+                    echo '<td>';
+                        if(($row->getStat() === '1') || ($row->getStat() === '3')) {
+                            echo 'Not responded';
+                        }
+                        else {
+                            echo 'Responded';
+                        }
+                        echo '</td>';
+                        if(($row->getStat() === '3') || ($row->getStat() === '4')) {
+                            echo "<td><button id=\"{$row->getMsgId()}\" class=\"btn btn-success\" role=\"button\">Activate</button></td>";
+                        }
+                        else {
+                            echo "<td><a href=\"read.php?id={$row->getMsgId()}\" class=\"btn btn-success\" role=\"button\">Read</a></td>";
+                        }                
+                        echo '</tr>';
+                        $search->id[] = $row->getMsgId();                                                
+                }
+                echo '</table>';
+                $_SESSION['res'] = $search->id;        
+        }   
+        else {
+            throw new Exception('<div class="alert alert-danger" role="alert">The search doesn\'t not have result!</div>');
+        }        
+    }
+}
+catch(Exception $e) {
+    echo $e->getMessage();    
+}
+?>
+<script src="../js/master.js" type="text/javascript"></script>

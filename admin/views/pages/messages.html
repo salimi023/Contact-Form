@@ -1,0 +1,37 @@
+<?php require_once('../views/templates/logout.html'); ?>
+<h1>Messages</h1>
+<a href="archive.php" class="btn btn-warning" role="button">Archived messages</a><br /><br />
+<?php
+try {
+    if($list->mdat->rowCount()) {
+        require_once('../views/templates/search.html');               
+        echo '<table class="table"><th>Nr.</th><th>Name</th><th>E-mail</th><th>Telephone</th><th>Received</th><th>Status</th><th>Action</th>';
+        while($row = $list->mdat->fetch()) {
+            echo '<tr>';
+            echo '<td>' . $i++ . '</td>';    
+            echo "<td>{$row->getName()}</td>
+                <td><a href=\"mailto:{$row->getEmail()}\">{$row->getEmail()}</a></td>
+                <td>{$row->getPhone()}</td>
+                <td>{$row->getReceived()}</td>";
+                echo '<td>';
+                if($row->getStat() === '1') {
+                    echo 'Not responded';
+                }
+                else {
+                    echo 'Responded';
+                }
+                echo '</td>';
+                echo "<td><a href=\"read.php?id={$row->getMsgId()}\" class=\"btn btn-success\" role=\"button\">Read</a></td>";
+                echo '</tr>';            
+        }
+        echo '</table>';        
+    }
+    else {
+        throw new Exception('<div class="alert alert-danger" role="alert">Currently you don\'t have messages!</div>');
+    }
+}
+catch(Exception $e) {
+    echo $e->getMessage();    
+}
+?>
+    <script src="../js/master.js" type="text/javascript"></script>

@@ -1,0 +1,33 @@
+</div>
+<!--/row-->
+<div class="row">
+    <div id="footer" class="col-md-12 footer">Simple Form - 2017</div>
+</div>
+</div>
+<!--/content-->
+</div>
+<!--/wrapper-->
+<script src="<?php echo $basepath; ?>css/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<!--Datepicker-->
+<script type="text/javascript" src="../js/datepicker/jquery.plugin.js"></script>
+<script type="text/javascript" src="../js/datepicker/jquery.datepick.js"></script>
+<script>
+    $('#date').datepick({
+        minDate: -90,
+        maxDate: +90,
+        showTrigger: '#calImg'
+    });
+</script>
+<script>
+    $('#date').datepick({
+        showTrigger: '#calImg'
+    });
+</script>
+<script>
+    $('#date').datepick($.extend({
+        pickerClass: 'my-picker'
+    }, $.datepick.regionalOptions['en']));
+</script>
+</body>
+
+</html>

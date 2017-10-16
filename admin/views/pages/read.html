@@ -1,0 +1,42 @@
+<?php require_once('../views/templates/logout.html'); ?>
+<h1>Reading Message</h1>
+<div class="row">
+    <div id="res" class="col-md-3">
+        <button id="respond" class="btn btn-success" role="button">Respond</button>
+    </div>
+    <div id="del" class="col-md-3">
+        <button id="delete" class="btn btn-danger" role="button">Delete</button>
+    </div>
+    <div id="arch" class="col-md-3">
+        <button id="archive" class="btn btn-warning" role="button">Archive</button>
+    </div>
+    <div id="back" class="col-md-3">
+        <a href="messages.php" class="btn btn-info" role="button">Back to messages</a>
+    </div>
+</div><br /><br />
+<div id="msg_id" class="reg" data-value="<?php echo $read->msg_id; ?>"></div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div id="del_msg" class="col-md-4"></div>
+    <div class="col-md-4"></div>
+</div>
+<?php
+if($row = $read->msgdat->fetch()) {
+    echo "
+    <div class=\"row\">
+        <div class=\"col-md-12\">        
+    <h2>Sent Message</h2>Name: {$row->getName()}<br />E-mail: {$row->getEmail()}<br />Phone: {$row->getPhone()}<br /><br />Message:<br />{$row->getMessage()}<br /><br />Received: {$row->getReceived()}</div><br /><br />";
+    if(($row->getStat() === '2') || ($row->getStat() === '4')) {
+    echo "
+    <div class=\"col-md-12\">
+    <h2>Sent Response</h2>Subject: {$row->getResSubject()}<br /><br />Text:<br />{$row->getResText()}<br /><br />Sent: {$row->getResSent()}</div></div>";
+    }   
+}
+?>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div id="editor" class="col-md-8"></div>
+        <div class="col-md-2"></div>
+    </div>
+    <script src="../js/res_ajax.js" type="text/javascript"></script>
+    <script src="../js/read.js" type="text/javascript"></script>

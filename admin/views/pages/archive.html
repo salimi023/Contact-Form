@@ -1,0 +1,37 @@
+<?php require_once('../views/templates/logout.html'); ?>
+<h1>Archived Messages</h1>
+<a href="messages.php" class="btn btn-warning" role="button">Active Messages</a><br /><br />
+<?php
+try{
+    if($arch->mdat->rowCount()) {
+        require_once('../views/templates/search.html');        
+        echo '<table class="table"><th>Nr.</th><th>Name</th><th>E-mail</th><th>Telephone</th><th>Received</th><th>Status</th><th>Action</th>';
+        while($row = $arch->mdat->fetch()) {
+            echo '<tr>';
+            echo '<td>' . $i++ . '</td>';
+            echo "<td>{$row->getName()}</td>
+            <td><a href=\"mailto:{$row->getEmail()}\">{$row->getEmail()}</a></td>
+            <td>{$row->getPhone()}</td>
+            <td>{$row->getReceived()}</td>";
+            echo '<td>';
+            if(empty($row->getResSent())) {
+                echo 'Not Responded';
+            }
+            else {
+                echo 'Responded';
+            }
+            echo '</td>';
+            echo "<td><button id=\"{$row->getMsgId()}\" class=\"btn btn-success\" role=\"button\">Activate</button></td>";
+            echo '</tr>';
+        }        
+        echo '</table>';
+    }
+    else {
+        throw new Exception('<div class="alert alert-danger" role="alert">Currently you don\'t have archived messages!</div>');
+    }
+}
+catch(Exception $e) {
+    echo $e->getMessage();
+}
+?>
+    <script src="../js/master.js" type="text/javascript"></script>

@@ -1,0 +1,18 @@
+<div class="row">
+    <div id="login_left" class="col-md-4"></div>
+    <div id="login_main" class="col-md-4">
+        <h3>Simple Form - Admin</h3>
+        <form method="post">
+            <div class="form-group">
+                <label for="name">Login name: </label>
+                <input type="text" id="name" name="name" class="form-control" value="<?php echo $user->login; ?>" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password: </label>
+                <input type="password" id="pass" name="pass" class="form-control" required />
+            </div>
+            <button type="submit" id="login" name="login" class="btn btn-default" role="button" disabled>Login</button>
+        </form>
+    </div>
+    <div id="login_right" class="col-md-4"></div>
+    <script src="js/login.js" type="text/javascript"></script>

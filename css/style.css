@@ -1,0 +1,44 @@
+/* Custom CSS rules */
+
+
+/* honeypot */
+
+.reg {
+    display: none
+}
+
+
+/* captcha field */
+
+#code {
+    background-color: #fff;
+    background-image: url(../images/status.gif);
+    background-repeat: no-repeat;
+    background-position: 202px 0;
+    padding: 0 20px 0 2px;
+    width: 198px;
+    height: 20px
+}
+
+#code.thinking {
+    background-position: 165px -19px
+}
+
+#code.approved {
+    background-position: 165px -35px
+}
+
+#code.denied {
+    background-position: 165px -52px;
+    background-color: #FF8282
+}
+
+.footer {
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 0 20px 0
+}
+
+#logout p {
+    margin: 10px 0 0 0 !important
+}
