@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 require_once('../model/class.UserData.php');
 require_once('helpers/class.LoginUser.php');
@@ -35,3 +36,4 @@ if(isset($_POST['login'])) {
 require_once('views/pages/login.html');
 require_once('views/templates/footer.html');
 unset($user);
+ob_end_flush();
