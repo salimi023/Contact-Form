@@ -1,5 +1,6 @@
 <?php
 ob_start();
+error_reporting();
 session_start();
 require_once('../model/class.UserData.php');
 require_once('helpers/class.LoginUser.php');

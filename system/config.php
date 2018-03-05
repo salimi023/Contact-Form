@@ -1,7 +1,7 @@
 <?php
 // Basepath
 
-$basepath = 'http://' . $_SERVER['HTTP_HOST'] . '/contact3/';
+$basepath = 'http://' . $_SERVER['HTTP_HOST'] . '/contact/';
 
 // Incoming e-mail data:
 
